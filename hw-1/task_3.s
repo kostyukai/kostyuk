@@ -7,8 +7,7 @@ count:
 	.space 4
 sum:
 	.space 4
-pr:
-	.string "\n"
+
 array:
 	.long 1, 2, 4, 8
 array_end:
