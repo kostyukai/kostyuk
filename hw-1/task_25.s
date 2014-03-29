@@ -27,7 +27,7 @@
             .string "%d"
 
         out:
-            .string "%d "
+            .string "%d\n"
             .text
             .globl pointer
             
@@ -92,6 +92,7 @@ next:
             addl    $8, %esp
             movl    $0, %eax
             
+            movl $0,%eax
             movl    %ebp, %esp
             popl    %ebp
             ret
