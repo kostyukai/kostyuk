@@ -27,7 +27,7 @@ main:
 	cmp $0,%ebx
 	jne loop_start
 		movl $0,%eax
-		jmp mypr
+		jmp myprint
 	loop_start:
 		cmp $0,%ebx
 		jne sum
