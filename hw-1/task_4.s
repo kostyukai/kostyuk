@@ -5,6 +5,8 @@
         .string "%x"
     fmt_int1:
         .string "%d"
+        pr:
+            .string "\n"
 
 .text
     .globl main
@@ -43,7 +45,8 @@ main:
         popl    %ecx
         popl    %eax
     loop    shear
-
+pushl   $pr 
+        call printf
     movl    %ebp,   %esp
     popl    %ebp
     ret
