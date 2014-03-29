@@ -1,6 +1,5 @@
     .data
-hello_string:
-    .string "Enter your number:\n"
+
 int_1:
     .space  4
 int_2:
@@ -22,9 +21,7 @@ main:
     pushl   %ebp        #Prolog
     movl    %esp,   %ebp    #Prolog
     
-    pushl   $hello_string   #"Enter your number"
-    call    printf
-    addl    $4, %esp
+   
     
     pushl   $int_1      
     pushl   $fmt_int    #"%d"
@@ -65,4 +62,5 @@ end:
     
     movl    %ebp,   %esp
     popl    %ebp
+    movl $0, %eax
     ret
