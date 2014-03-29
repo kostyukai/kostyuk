@@ -49,5 +49,6 @@ pushl   $pr
         call printf
     movl    %ebp,   %esp
     popl    %ebp
+    movl    $0, %eax
     ret
 
