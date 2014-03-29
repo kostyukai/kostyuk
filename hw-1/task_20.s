@@ -1,10 +1,10 @@
 	.data
-.globl a
-a:
+.globl array
+array:
 .space 12
-in:
+scan:
 .string	"%d"
-out:
+print:
 .string "%d\n"
 min:
 .space 4
@@ -18,12 +18,12 @@ movl	%esp, %ebp
 movl $0,	%eax
 movl %eax, count
 jmp	next_1
-read:
+init:
 movl	count, %eax
 sall	$2, %eax
-addl	$a, %eax
+addl	$array, %eax
 pushl	%eax
-pushl	$in
+pushl	$scan
 call	scanf
 addl $8, %esp
 movl count, %eax
@@ -32,44 +32,44 @@ movl %eax, count
 next_1:
 movl count, %eax
 cmpl	$2, %eax 
-jle	read
+jle	init
 
-movl a, %eax #min = a[0]
+movl array, %eax 
 movl %eax, min
 
 movl $1, %eax
 movl %eax, count
 jmp next_2
-minimum:
+small_one:
 movl count, %eax
 sall $2, %eax
-addl $a, %eax
+addl $array, %eax
 
 movl (%eax), %edx
 movl %edx, %eax
 
 movl min, %ebx
 cmpl %ebx, %eax
-js yes
-jmp no
-yes: #Если меньше минимального известного
+js more
+jmp less
+more: 
 movl %eax, min
-no: #Если не меньше минимального известного
+less: 
 movl count, %eax
 addl $1, %eax
 movl %eax, count
 next_2:
 movl count, %eax
 cmpl $2, %eax
-jle minimum	
+jle small_one	
 movl min, %eax
 pushl %eax
-pushl $out
+pushl $print
 call printf
 addl $8, %esp
 
-movl %ebp, %esp #Epilog
+movl %ebp, %esp 
 popl %ebp
 
-movl	$0, %eax #return 0
+movl	$0, %eax
 ret
