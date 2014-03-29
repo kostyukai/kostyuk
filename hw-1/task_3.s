@@ -7,7 +7,8 @@ count:
 	.space 4
 sum:
 	.space 4
-
+pr:
+	.string "\n"
 array:
 	.long 1, 2, 4, 8
 array_end:
@@ -60,6 +61,9 @@ finish:
 	decl %ecx
 	cmpl $0, %ecx
 	jg start
+	pushl $pr
+	call printf
+	addl $4, %esp
 	movl $0, %eax
 	movl %ebp, %esp	
 	popl %ebp
