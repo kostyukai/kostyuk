@@ -1,6 +1,5 @@
 .data
-	hello_string1:
-		.string "Enter your  numbers \n"
+
 	int_1:
 		.space 4
 	int_2:
@@ -23,9 +22,6 @@ main:
 	pushl	%ebp		
 	movl	%esp, 	%ebp
 
-	pushl $hello_string1
-	call	printf
-	addl	$4,	%esp
 	
 	pushl	$int_1		
 	pushl	$fmt_int	
@@ -72,7 +68,7 @@ main:
         call printf
         addl    $8,     %esp
 
-
+	movl $0, %eax
 	movl %ebp, %esp
         popl %ebp
         ret
