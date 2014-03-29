@@ -43,6 +43,11 @@ main:
 		popl	%eax
 	loop	shear
 
+        pushl   $endl
+        call printf
+        addl    $4,     %esp
+
+
 	movl	%ebp,	%esp
 	popl	%ebp
 	movl $0, %eax
