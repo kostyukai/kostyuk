@@ -3,15 +3,11 @@
 		.space	4
 	fmt_int:
 		.string	"%d"
-	fmt_int1:
-		.string "%d\n"
 .text
 	.globl main
 main:
 	pushl	%ebp		
 	movl	%esp, 	%ebp	
-
-	addl	$4,	%esp
 	
 	pushl	$int_1		
 	pushl	$fmt_int	
