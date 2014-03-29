@@ -4,17 +4,13 @@
 	fmt_int:
 		.string	"%d"
 	fmt_int1:
-		.string "your number in binary number system:  %d\n"
-	hello_string:
-		.string "Enter your number:\n"
+		.string "%d\n"
 .text
 	.globl main
 main:
 	pushl	%ebp		
 	movl	%esp, 	%ebp	
-	
-	pushl   $hello_string	
-	call	printf
+
 	addl	$4,	%esp
 	
 	pushl	$int_1		
