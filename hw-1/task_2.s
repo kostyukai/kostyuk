@@ -45,5 +45,6 @@ main:
 
 	movl	%ebp,	%esp
 	popl	%ebp
+	movl $0, %eax
 	ret
 
