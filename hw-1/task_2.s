@@ -3,6 +3,8 @@
 		.space	4
 	fmt_int:
 		.string	"%d"
+	endl:
+		.string "\n"
 .text
 	.globl main
 main:
@@ -19,10 +21,6 @@ main:
 
 	shear:
 		shll	$1,%eax
-		/*pushl   %eax
-                pushl   $fmt_int
-                call printf
-                addl    $8,     %esp*/
 
 		movl	$0, %ebx
 		jnc 	printb
