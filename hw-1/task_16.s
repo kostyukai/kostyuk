@@ -14,7 +14,7 @@ s4:
 	.string "4\n"
 	.text
 s12:  
-	.string "12 %d\n"
+	.string "12 \n"
 	.text
 s24:
 	.string "24\n"
