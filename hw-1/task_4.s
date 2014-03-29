@@ -5,17 +5,14 @@
         .string "%x"
     fmt_int1:
         .string "%d"
-    hello_string:
-        .string "Enter your number:\n"
+
 .text
     .globl main
 main:
     pushl   %ebp        
     movl    %esp,   %ebp    
     
-    pushl   $hello_string   
-    call    printf
-    addl    $4, %esp
+
     
     pushl   $int_1      
     pushl   $fmt_int    
