@@ -1,3 +1,5 @@
+#x>0 !!!
+        
         .data
 fmt_str:
         .string "%f"
@@ -21,19 +23,23 @@ main:
         pushl $fmt_str
         call scanf
 
-        fldl y
-        fldl x
+        movl x, %eax
+        movl y, %ebx
+
+        cmpl $0, %ebx
+        je   m1
+
+        flds y
+        flds x
+
+        fyl2x
 
         fstpl (%esp)
         pushl $fmt_str
         call printf
 
 
-        fyl2x
 
-        /*fstpl 4(%esp)
-        movl $fmt_str, (%esp)
-        call printf*/
 
         movl $0, %eax
         movl %ebp, %esp
