@@ -45,3 +45,5 @@ main:
         movl %ebp, %esp
         popl %ebp
         ret
+        
+FRNDINT ОКРУГЛЕНИЕ
