@@ -9,14 +9,13 @@ i:
 printf_format:
         .string "%s\n"
 
-str_1:
-        .string "NO\n"
-str_2:
-        .string "YES\n"
+
 scanf_format:
         .string "%s"
 scand_format:
         .string "%d"
+my_str:
+        .space 50
 counter:
         .space 4
 c:
