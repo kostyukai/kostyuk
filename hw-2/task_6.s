@@ -84,9 +84,9 @@ main:
 pushl %ebp
 movl %esp, %ebp
 
-pushl $a
+/*pushl $a
 pushl $f_str
-call scanf
+call scanf*/
 
 OUTF
 
