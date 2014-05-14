@@ -6,7 +6,9 @@ format_string_ZF:
 format_string_SF:
 .string "SF=%d\n"
 format_string_OF:
-.string "OF=%d\n"
+.string "OF=%d\n
+f_str:
+.string "%d"
 
 .macro OUTF
 label_0_ZF:
@@ -79,6 +81,10 @@ main:
 //prolog
 pushl %ebp
 movl %esp, %ebp
+
+pushl %eax
+pushl $f_str
+call scanf
 
 OUTF
 
