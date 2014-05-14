@@ -6,7 +6,7 @@ format_string_ZF:
 format_string_SF:
 .string "SF=%d\n"
 format_string_OF:
-.string "OF=%d\n
+.string "OF=%d\n"
 f_str:
 .string "%d"
 
