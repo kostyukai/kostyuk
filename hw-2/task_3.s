@@ -43,7 +43,8 @@ main:
 
 pushl %ebp
 movl %esp, %ebp
-#Read input data section
+
+read:
 movl $0, %ecx
 begin:
 movl %ecx, %eax
