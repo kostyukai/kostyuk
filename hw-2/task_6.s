@@ -1,14 +1,16 @@
 .data
 format_string_CF:
-.string "CF=%d\n"
+.string "%d "
 format_string_ZF:
-.string "ZF=%d\n"
+.string "%d\n"
 format_string_SF:
-.string "SF=%d\n"
+.string "%d "
 format_string_OF:
-.string "OF=%d\n"
+.string "%d "
+a:
+.space 4
 f_str:
-.string "%d"
+.string "%d "
 
 .macro OUTF
 label_0_ZF:
@@ -82,7 +84,7 @@ main:
 pushl %ebp
 movl %esp, %ebp
 
-pushl %eax
+pushl $a
 pushl $f_str
 call scanf
 
