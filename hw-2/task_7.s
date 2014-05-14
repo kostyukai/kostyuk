@@ -42,7 +42,7 @@ read:
         popl %ecx
         popl %ebx
 
-        cmpb $48, %al
+        cmpb $10, %al
         je work
         movl %eax, (%ebx)
         incl %ebx
