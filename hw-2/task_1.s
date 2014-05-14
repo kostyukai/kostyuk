@@ -41,6 +41,8 @@ main:
     call printf
     addl $8, %esp
 
+    pushl $pr
+    call printf
     
 
 
