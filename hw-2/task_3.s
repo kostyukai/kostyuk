@@ -5,7 +5,7 @@ fmt_string:
 array:
 .space 16
 fmt_string_pr:
-.string "%f\n"
+.string "%.2f\n"
 .text
 
 sum:
