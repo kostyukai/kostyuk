@@ -13,7 +13,7 @@ scanf("%d", &a[i]);
 printf("%d\n", intsum(a, n));
 for (i=0; i<5; i++)
 scanf("%f", &f[i]);
-printf("%f\n", floatsum(f, n));
+printf("%.2f\n", floatsum(f, n));
 
 return 0;
 }
