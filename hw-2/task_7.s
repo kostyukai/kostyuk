@@ -1,7 +1,8 @@
 .data
 printd_format:
         .string "%d\n"
-
+printc_format:
+	.string "%c\n"
 
 printf_format:
         .string "%s\n"
@@ -42,37 +43,48 @@ read:
         popl %ecx
         popl %ebx
 
-        cmpb $10, %al
+        cmpb $33, %al
         je work
         movl %eax, (%ebx)
         incl %ebx
         incl %ecx
         jmp read
 work:
-        decl %ecx
+       // decl %ecx
         movl %ecx, counter
-
+	/*pushl counter
+	pushl $printd_format
+	call printf*/
+	
         movl $my_str, %ebx
         movl $0, c
 check:
         addl counter, %ebx
         decl %ebx
+	/*pushl (%ebx)
+	pushl $printc_format
+	call printf*/
         cmpb $65, (%ebx)
-        jl rule_2
+        jl rule_2_1
         cmpb $90, (%ebx)
-        ja rule_2
+        ja rule_2_1
         movb (%ebx), %al
         movl counter, %ecx
         decl %ecx
         movl $my_str, %ebx
         my_cmp:
                 cmpb (%ebx), %al
-                je rule_2
+                je rule_2_1
                 incl %ebx
         loop my_cmp
 
 
         jmp rule_1
+
+rule_2_1:
+	movl $my_str, %ebx
+	// jmp continue
+	movl $0, c
 rule_2:
         movb (%ebx), %al
         pushl %eax
@@ -89,6 +101,7 @@ rule_2:
         jmp exit
 
 rule_1:
+	//jmp continue
         movl $my_str, %ebx
         movl counter, %ecx
         decl %ecx
@@ -113,7 +126,7 @@ print:
         incl c
         movl counter, %ecx
         cmpl c, %ecx
-        jg  print
+        jg print
         pushl $slash
         call printf
 
