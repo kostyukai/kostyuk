@@ -1,40 +1,76 @@
 #include <stdio.h>
-#include <math.h>
+#include "drawme.h"
 
-int main (){
-int N=10;
-int M=1;
-double h=2.0/N;
-printf ("%f\n",h);
-int Cx=1;
-double k=0.6;
-double t=k*h/Cx;
+double f(double x){
+if (x >= -0.5 && x <= 0.5) {
+return 1;
+}
+return 0;
+};
 
-int now [N+1];
-double  next [N+1];
 
-double x1=-0.5;
-double x2=0.5;
+int main(){
+
+const double Cx = 1;
+const double k = 0.5;
+
+int N, M;
+double x[16000] = {0};
+double y[16000] = {0};
+double previous_y[16000] = {0};
+double d[16000] = {0};
+double y_etalon[16000] = {0};
+double h, t;
+
+scanf("%d", &N);
+h = 2.0 / N;	
+t = (k * h) / Cx;
+
+M = 2.0 / (Cx * t); // Количество шагов по времени
+printf("M = %d\n", M);
 int i;
-for (i=0;i<N+1; i++){
-        if (((-1+i*h)<=x1) || ((i*h-1)>=x2))
-                now[i]=0;
-        else
-                now[i]=1;
+
+//printf("Numbers was ");
+for (i = 0; i < N; i++) {
+  x[i] = (i * h) - 1;
+y[i] = previous_y[i] = y_etalon[i] = f(x[i]);
+// printf("%lf ", y[i]);
+        };
+
+//printf("\nNow numbers are ");
+double A, B, C, D, q, b;
+
+int j = 0;
+
+while (j < M) {
+#pragma parallel for
+for (i = 1; i < N; i++) {
+q = (y[i] - previous_y[i-1]) / h;	//y = Axxx + Bxx + Cx + D;
+b = y[i] - q * x[i];
+y[i] = q * (x[i] - Cx * t) + b;
+};
+
+
+        q = (y[0] - previous_y[N-1]) / h; //Для 0-го узла отдельно
+        y[0] = (h - Cx * t) * q + previous_y[N-1];
+
+#pragma parallel for
+        for (i = 0; i < 16000; i++){
+                previous_y[i] = y[i];
         }
-now [N+1]=now[0];
-for (i=0;i<=N;i++)
-        printf ("%d " ,now[i]);
 
-next[0]=(now[1]-now[0])*(h-Cx*t)/h;
-for (i=0;i<N-1; i++)
-        if ((next[i]==0) && (now[i+2]==0))
-                next[i+1]=0;
-        else
-                next[i+1]=abs(now[i+2]-next[i])*((h-Cx*t)/h);
 
-for (i=0;i<N;i++)
-        printf ("%f " ,next[i]);
+//printf("%d ", j);
+j++;
+}
+//Дальше вывод:
+
+        DM_plot_1d_etalon(x, y, y_etalon, N, "Test 1", 0);
+        DM_plot_1d_etalon(x, y, y_etalon, N, "Test 1", 1);
+
+
+//for (i = 0; i < N; i++) {
+// printf ("%lf ",y[i]);
+//}
 return 0;
 }
-
