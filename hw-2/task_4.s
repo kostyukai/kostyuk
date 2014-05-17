@@ -63,6 +63,7 @@ fstl	(%esp)
 pushl	$printf_format
 call	printf
 
+movl $0, %eax
 movl	%ebp, %esp
 popl	%ebp
 ret
