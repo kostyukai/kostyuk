@@ -1,3 +1,5 @@
+//y = Axxx + Bxx + Cx + D
+
 #include <stdio.h>
 #include "drawme.h"
 
@@ -45,12 +47,12 @@ while (j < M) {
 
 for (i = 1; i < N; i++) {
 D = y[i];
-C = d[i];
+C = der[i];
 A = (((previous_der[i-1] - C)/h) + 2 * (previous_y[i-1] - D + C * h)/(h*h))/h;
 B = (previous_y[i-1] - D + C * h)/(h*h) + A*h;
 
 y[i] = A * (-Cx*t) * (-Cx*t) * (-Cx*t) + B * (-Cx*t) * (-Cx*t) + C * (-Cx*t) + D;
-der[i] = 3 * A * (-Cx*t) * (-Cx*t) + 2 * B * (-Cx*t) + C; //y = Axxx + Bxx + Cx + D;
+der[i] = 3 * A * (-Cx*t) * (-Cx*t) + 2 * B * (-Cx*t) + C; 
 };
 
 
@@ -70,7 +72,7 @@ previous_der[i] = der[i];
         }
 j++;
 }
-//built plot
+//build plot
 
         DM_plot_1d(x, y, N, "Test 1", 0);
         DM_plot_1d(x, y, N, "Test 1", 1);
