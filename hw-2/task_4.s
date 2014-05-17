@@ -1,25 +1,26 @@
-.data
+	.data
 scanf_format:
-.string	"%f %f"
+.string	"%lf %lf"
 printf_format:
-.string	"%f\n"
+.string	"%.2f\n"
 
-
+.bss
 x:
-.space	4
+.space	8
 y:
-.space	4
+.space	8
 log:
-.space	4
+.space	8
 int:
-.space	4
+.space	8
 fract:
-.space	4
+.space	8
 
 .text
 .globl main
 
 main:
+
 pushl	%ebp
 movl	%esp, %ebp
 
@@ -34,21 +35,22 @@ fldl	y
 fldl	x
 fyl2x
 
-//int of ylog2(x)
+
 fstl	log
 frndint
 fstl	int
 fldl	log
 
+
 fsubp
 
-// 2^ fract of log
+
 f2xm1
 fld1
 faddp
 fstl	fract	
 
-// 2^(int of log
+
 fldl	int
 fld1
 fscale	
